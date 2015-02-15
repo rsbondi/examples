@@ -1,7 +1,8 @@
 Examples
 ========
 
-This is a project to display live online demos with source code, similar to embedding a fiddle but self hosted
+This is a project to display live online demos with source code, similar to embedding a fiddle but self hosted.
+See in action [here](http://richardbondi.net/riot/)
 
 Features
 --------
