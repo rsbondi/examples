@@ -1,0 +1,21 @@
+.label {
+  width: 120px;
+  display: inline-block;
+}
+.row{
+  line-height:30px;
+}
+#container {
+  margin: 30px auto;
+  width: 400px;
+  border: 1px solid black;
+  padding: 15px;
+}
+.remove {
+  float: right;
+  margin-right: 20px;
+  color: #aa0000;
+  font-weight: bold;
+  font-size: 1.1em;
+  cursor: pointer;
+}

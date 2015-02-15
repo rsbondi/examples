@@ -1,0 +1,62 @@
+<integer>
+  <input type="number" name="{ opts.name }" />
+  
+  console.log('opts in input', opts)
+</integer>
+
+<decimal>
+  <input type="number" step="0.01" name="{ opts.name }" />
+</decimal>
+
+<string>
+  <input type="text" name="{ opts.name }" />
+</string>
+
+<choose>
+  <select name="{ opts.name }">
+    <option value="1">One</option>
+    <option value="2">Two</option>
+    <option value="3">Three</option>
+  </select>
+</choose>
+
+<raw>
+  <span></span>
+
+  riot.mountTo(this.root, opts.content.tag, opts.content)
+</raw>
+
+<app>
+  name:
+  <input id="fieldName">&nbsp; type:
+  <select id="inputType">
+    <option value="integer">Integer</option>
+    <option value="decimal">Decimal</option>
+    <option value="string">String</option>
+    <option value="choose">Select</option>
+  </select>
+
+  <button onclick="{ add }">Add</button>
+
+  <h3>Inputs</h3>
+
+  <div id="inputs" each={inp in inputs }>
+    <div class="row">
+      <div class='label'>{ inp.name || inp.tag }:</div>
+      <raw content="{ inp }" />
+      <div class='remove' onclick={ parent.remove }>x</div>
+    </div>
+  </div>
+
+  <script>
+    this.inputs = []
+    
+    add() {
+      this.inputs.push({"name": fieldName.value,"tag": inputType.value})
+    }
+    
+    remove(e) {
+      this.inputs.splice(this.inputs.indexOf(e.item.inp), 1)
+    }
+  </script>
+</app>

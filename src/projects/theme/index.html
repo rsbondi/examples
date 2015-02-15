@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+<theme></theme>
+<theme-switch></theme-switch>
+<h1>Hello Riot!</h1>
+
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. <code>Confecta res esset.</code> <a href='http://loripsum.net/' target='_blank'>At enim hic etiam dolore.</a> Magna laus. At modo dixeras nihil in istis rebus esse, quod interesset. </p>
+
+<pre>
+Nos beatam vitam non depulsione mali, sed adeptione boni
+iudicemus, nec eam cessando, sive gaudentem, ut Aristippus,
+sive non dolentem, ut hic, sed agendo aliquid considerandove
+quaeramus.
+
+Et hi quidem ita non sola virtute finem bonorum contineri
+putant, ut rebus tamen omnibus virtutem anteponant;
+</pre>
+
+
+<p><a href='http://loripsum.net/' target='_blank'>Quid Zeno?</a> Sapientem locupletat ipsa natura, cuius divitias Epicurus parabiles esse docuit. </p>
+
+<ul>
+    <li>Quod si ita se habeat, non possit beatam praestare vitam sapientia.</li>
+    <li>Atqui pugnantibus et contrariis studiis consiliisque semper utens nihil quieti videre, nihil tranquilli potest.</li>
+    <li>Ergo in gubernando nihil, in officio plurimum interest, quo in genere peccetur.</li>
+    <li>Nam et complectitur verbis, quod vult, et dicit plane, quod intellegam;</li>
+    <li>Cetera illa adhibebat, quibus demptis negat se Epicurus intellegere quid sit bonum.</li>
+    <li>Estne, quaeso, inquam, sitienti in bibendo voluptas?</li>
+</ul>
+
+
+<p><code>Aperiendum est igitur, quid sit voluptas;</code> Nonne videmus quanta perturbatio rerum omnium consequatur, quanta confusio? De vacuitate doloris eadem sententia erit. In his igitur partibus duabus nihil erat, quod Zeno commutare gestiret. Idemque diviserunt naturam hominis in animum et corpus. <a href='http://loripsum.net/' target='_blank'>Pugnant Stoici cum Peripateticis.</a> Varietates autem iniurasque fortunae facile veteres philosophorum praeceptis instituta vita superabat. Si longus, levis dictata sunt. Sed ille, ut dixi, vitiose. Summus dolor plures dies manere non potest? </p>
+
+<p>Hanc ergo intuens debet institutum illud quasi signum absolvere. Quantum Aristoxeni ingenium consumptum videmus in musicis? Atque haec ita iustitiae propria sunt, ut sint virtutum reliquarum communia. Morbo gravissimo affectus, exul, orbus, egens, torqueatur eculeo: quem hunc appellas, Zeno? Nec tamen ullo modo summum pecudis bonum et hominis idem mihi videri potest. <code>Rationis enim perfectio est virtus;</code> </p>
+
+<p>Ex ea difficultate illae fallaciloquae, ut ait Accius, malitiae natae sunt. Duo Reges: constructio interrete. Itaque hic ipse iam pridem est reiectus; Mene ergo et Triarium dignos existimas, apud quos turpiter loquare? Quod non faceret, si in voluptate summum bonum poneret. Cur tantas regiones barbarorum pedibus obiit, tot maria transmisit? </p>
+
+<script src="https://cdn.jsdelivr.net/riot/2.0.7/riot.min.js"></script>
+<script src="theme.js"></script>
+
+<script>
+    var theme = riot.mount('theme')[0]
+    var switcher = riot.mount('theme-switch')[0]
+    switcher.on('switch', function(s) {
+        theme.switch(s)
+    })
+</script>
+
+
+</body>
+
+</html>

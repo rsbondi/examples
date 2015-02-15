@@ -1,0 +1,66 @@
+#selectTag {
+  display: none;
+}
+.selected {
+  min-height: 30px;
+  min-width: 200px;
+  border: 1px solid black;
+}
+multi-select ul {
+  list-style-type: none;
+  padding: 0;
+  margin-left: 0;
+  font-weight: bold;
+}
+.selected {
+  padding: 2px;
+  margin: 0 0 -1px;
+  width: 100%;
+  display: table;
+  table-layout: fixed;
+}
+.selected li div {
+  border: 1px solid black;
+  padding: 5px;
+}
+.selected li div,
+.selected li a {
+  float: left;
+  margin-right: 5px;
+}
+.selected li a {
+  text-decoration: none;
+  color: darkblue;
+  border: 1px solid darkblue;
+  background-color: lightgrey;
+  padding: 0 5px;
+}
+.selector {
+  width: 100%;
+  border: none;
+  height: 30px;
+}
+.selections {
+  border: 1px solid black;
+  margin-top: 0;
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  z-index: 10;
+  background: white;
+}
+.selections li {
+  padding: 5px;
+}
+.selections li:hover {
+  background-color: #ccccff;
+}
+label {
+  margin-top: 8px;
+}
+.show {
+  display: block;
+}
+.hide {
+  display: none;
+}

@@ -1,0 +1,42 @@
+.console {
+  height: 200px;
+  overflow: auto;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 12px;
+  margin-top: 10px;
+  border: 1px solid gray;
+  padding: 5px;
+  line-height: 18px;
+}
+
+.error {
+  color: red;
+  background: url(http://cdnjs.cloudflare.com/ajax/libs/fatcow-icons/20130425/FatCow_Icons16x16/exclamation.png) no-repeat;
+  padding-left: 20px;
+}
+.debug {
+  color: blue;
+  background: url(http://cdnjs.cloudflare.com/ajax/libs/fatcow-icons/20130425/FatCow_Icons16x16/information.png) no-repeat;
+  padding-left: 20px;
+}
+.warn {
+  color: #cccc00;
+  padding-left: 20px;
+  background: url(//cdnjs.cloudflare.com/ajax/libs/fatcow-icons/20130425/FatCow_Icons16x16/error.png) no-repeat;
+}
+.log {
+  background: url(http://cdnjs.cloudflare.com/ajax/libs/fatcow-icons/20130425/FatCow_Icons16x16/error_log.png) no-repeat;
+  padding-left: 20px;
+}
+
+label {
+  margin-left: 10px;
+}
+
+#clear {
+  margin-top: 10px;
+}
+
+form {
+  display: inline-block;
+}

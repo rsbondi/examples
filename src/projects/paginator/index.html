@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <h3>Grouped</h3>
+  <paginator class="a"></paginator>
+  <div id="events" class='group'>group above and below</div>
+  <paginator class="a"></paginator>
+  
+  <h3>Single</h3>
+  <paginator class="b"></paginator>
+  
+  <h3>Filter</h3>
+  <paginator class="c"></paginator>
+  <button id="filter">Filter</button> this sets a random number of pages to simulate a filter
+
+
+  <script src="https://cdn.jsdelivr.net/g/riot@2.0(riot.min.js)"></script>
+  <script src="paginator.js"></script>
+
+  <script>
+    var paginatorGroup  = riot.mount('.a', {'total': 13, 'nblocks': 7})
+    var paginatorSingle = riot.mount('.b', {'total': 11, 'nblocks': 5})[0]
+    var paginatorFilter = riot.mount('.c', {'total': 11, 'nblocks': 5})[0]
+
+    paginatorGroup.forEach(function(g) { // need better way to sync
+      g.on('pageChange', function(e) {
+        events.innerHTML = 'Grouped paginator event handled here page ' + e.page
+        paginatorGroup.forEach(function(p) {
+          p.trigger('setPage', e)
+        })
+      })
+    })
+
+    paginatorSingle.on('pageChange', function(e) {
+      events.innerHTML = 'Single paginator event now do something page ' + e.page
+    })
+
+    paginatorFilter.on('pageChange', function(e) {
+      events.innerHTML = 'Filter paginator event page ' + e.page
+    })
+
+    filter.addEventListener('click', function() {
+      var total = Math.floor(Math.random() * 16)
+      paginatorFilter.init({
+        current: 1,
+        total: total,
+        nblocks: Math.min(total, 5)
+      })
+      events.innerHTML = 'Filter paginator reset page count to ' + paginatorFilter.total
+    })
+  </script>
+
+</body>
+
+</html>

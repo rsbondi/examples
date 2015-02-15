@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <link rel="stylesheet" href="style.css">
+  </head>
+
+  <body>
+
+    <app></app>
+    <console></console>
+    <button id='clear'>clear</button>
+    
+<script src="https://cdn.jsdelivr.net/riot/2.0.7/riot.min.js"></script>
+<script src="console.js"></script>
+<script src="app.js"></script>
+
+<script>
+  var riotConsole = riot.mount('console')[0]
+  var app = riot.mount('app')[0]
+
+  riotConsole.add({message: 'initially logging type log', cls: 'log'})
+  
+  clear.addEventListener('click', function() {
+    riotConsole.clear()
+  })
+
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,57 @@
+<examples>
+    <div class="readme"><readme file="{readme}"></div>
+    <div class='project' each={dir, file in examples}>
+        <project dir={dir} file={file}>
+    </div>
+
+    <script>
+        this.examples = opts.examples
+        this.readme   = opts.readme
+    </script>
+</examples>
+
+<project>
+    <div class="readme"><readme file="{file}"></div>
+
+    <ul class='tabs'>
+        <li>Files</li>
+        <li each={f, i in file} class="{active:parent.active==i}"  onclick={parent.settab} hide={f.name=='README.md'}>
+            {f.name}
+        </li>
+    </ul>
+    <ul class="tabs-content">
+        <li each={f, i in file} class="{active:parent.active==i}">
+            <pre>
+           {f.contents}
+            </pre>
+        </li>
+    </ul>
+
+    <iframe src="{dir}/" frameborder="0" />
+
+    <script>
+        this.dir = opts.dir
+        this.file = opts.file
+        this.active = this.file[0].name == 'README.md' ? 1 : 0
+        var self = this
+
+        settab(e) {
+            self.active = e.item.i
+        }
+
+    </script>
+</project>
+
+<readme>
+    <script>
+        this.file = opts.file
+        var self=this
+
+        this.file.some(function(f) {
+            if(f.name == 'README.md') {
+                self.root.innerHTML = marked(f.contents)
+                return true
+            }
+        })
+    </script>
+</readme>

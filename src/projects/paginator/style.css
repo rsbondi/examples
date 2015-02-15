@@ -1,0 +1,56 @@
+/* Styles go here */
+paginator ul {
+    list-style: none;
+}
+
+paginator ul li {
+    display: inline-block;
+    border: 1px solid grey;
+    margin: 0 1px;
+    height: 26px;
+    width: 36px;
+    text-align: center;
+    padding-top: 8px;
+    cursor: pointer;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+}
+
+.active {
+    background: #eeeeff;
+    border: 2px solid darkblue;
+
+}
+
+.disabled {
+    background: eeeeee;
+    color: lightgrey;
+    border-color: lightgrey;
+}
+
+.group {
+    margin-left: 40px;
+    height: 100px;
+    border: 1px solid lightgrey;
+    width: 368px;
+    padding-top: 10px;
+    text-align: center;
+}
+
+#filter {
+    margin-left: 40px;
+    padding: 0.6em 1.3em;
+    cursor: pointer;
+}
+
+h3 {
+  background: #f8f8ff;
+  color: darkblue;
+  padding: 0.3em;
+  border: 1px solid darkblue;
+}

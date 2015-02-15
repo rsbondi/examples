@@ -1,0 +1,41 @@
+h1 {
+    background: darkgrey;
+}
+
+pre {
+    margin: 10px;
+    background: darkgrey;
+    padding: 20px;
+    border-radius: 8px 5px;
+}
+
+a {
+    font-weight: bold;
+    color: yellow;
+}
+
+code {
+    border: 1px solid darkgrey;
+    color: #cceeff;
+    padding: 3px;
+    background: blue;
+}
+
+body {
+    font-family: helvetica;
+    background: black;
+    color: white;
+}
+
+ul {
+    border: 1px dotted #cccccc;
+    font-size: 0.8em;
+}
+
+li {
+    line-height: 1.5em;
+}
+
+p {
+    line-height: 2em;
+}
