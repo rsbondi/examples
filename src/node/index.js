@@ -36,8 +36,10 @@ http.createServer(function(req, res) {
             apps[projects+d] = [];
             var files = fs.readdirSync(projects+d)
             files.forEach(function(fname) {
-                var file = fs.readFileSync(projects+d+'/'+fname, 'utf8')
-                apps[projects+d].push({'name': fname, 'contents': file})
+                if(!fs.lstatSync(projects+d+'/'+fname).isDirectory()) {
+                    var file = fs.readFileSync(projects+d+'/'+fname, 'utf8')
+                    apps[projects+d].push({'name': fname, 'contents': file})
+                }
             })
         })
         res.end(JSON.stringify(apps))

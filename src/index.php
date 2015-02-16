@@ -5,11 +5,11 @@ $readme = array(array("name"=>"README.md", "contents"=>file_get_contents("./READ
 
 $json = array();
 foreach($dirs as $dir) {
-    if(skip($dir)) continue;
+    if(is_dir($dir)) continue;
     $json["projects/$dir"] = array();
     $files = scandir("projects/$dir");
     foreach($files as $f) {
-        if(skip($f)) continue;
+        if(is_dir("projects/$dir/$f")) continue;
         $json["projects/$dir"][] = array("name"=>$f, "contents"=>file_get_contents("projects/$dir/$f"));
     }
 }
