@@ -13,9 +13,6 @@ foreach($dirs as $dir) {
         $json["projects/$dir"][] = array("name"=>$f, "contents"=>file_get_contents("projects/$dir/$f"));
     }
 }
-function skip($d) {
-    return $d == "." || $d == "..";
-}
 ?>
 <!DOCTYPE html>
 <html>
