@@ -1,104 +1,102 @@
 <todo>
-    <h3>{ parent.title }</h3>
+  <h3>{ parent.title }</h3>
 
-    <ul class="item">
-      <li each={ items }>
-        <label class="{ completed: done }">
-          <input type="checkbox" __checked={ done } onclick={ parent.toggle }>{ title }
-        </label>
-      </li>
-    </ul>
+  <ul class="item">
+    <li each={ items }>
+      <label class="{ completed: done }">
+        <input type="checkbox" checked={ done } onclick={ parent.toggle }>{ title }
+      </label>
+    </li>
+  </ul>
 
-    <form onsubmit={ add }>
-      <input name="input" onkeyup={ edit }>
-      <button disabled={ !text }>Add #{ items.length + 1 }</button>
-      <button  __disabled="{ canRemove() }" class="remove" onclick={ remove } title="Remove completed items">x</button>
-    </form>
+  <form onsubmit={ add }>
+    <input name="input" onkeyup={ edit }>
+    <button disabled={ !text }>Add #{ items.length + 1 }</button>
+    <button disabled={ canRemove() } class="remove" onclick={ remove } title="Remove completed items">x</button>
+  </form>
 
-    <script>
-      var parent = this.parent
-      this.items = parent.items || []
-  
-      this.add = function(e) {
-        if (this.text) {
-          this.items.push({
-            title: this.text
-          })
-          this.text = this.input.value = ''
-          parent.update()
+  <script>
+    var todos = this.parent.parent // in a loop, context changes
+    this.items = this.parent.items || []
+    var self = this
+
+    add(e) {
+      if (this.text) {
+        this.items.push({
+          title: this.text
+        })
+        this.text = this.input.value = ''
+        todos.update()
+      }
+    }
+
+    remove(e) {
+      for (var i = this.items.length -1; i>=0; i--) {
+        if (this.items[i].done) {
+          this.items.splice(i, 1);
         }
       }
-  
-      this.remove = function(e) {
-        for (var i = this.items.length -1; i>=0; i--) {
-          if (this.items[i].done) {
-            this.items.splice(i, 1);
-            parent.update();
-          }
-        }
-      }
-  
-      this.edit = function(e) {
-        this.text = e.target.value;
-      }
-  
-      this.toggle = function(e) {
-        var item = e.item;
-        item.done = !item.done;
-        return true;
-      }
-  
-      this.canRemove = function() {
-        for(var i in this.items) {
-          if(this.items[i].done) return false;
-        }
-        return true;
-      }
-    </script>
+      todos.update()
+    }
+
+    edit(e) {
+      this.text = e.target.value;
+    }
+
+    toggle(e) {
+      var item = e.item
+      item.done = !item.done
+      this.parent.update()
+      return true
+    }
+
+    this.canRemove = function() {
+      var dones = this.items.filter(function(i) {
+        return i.done
+      })
+      return !dones.length
+    }.bind(this)
+  </script>
 </todo>
 
 <todos>
-    <h3>Add List/Remove Empty</h3>
-    <form onsubmit={ add }>
-      <input name="input" onkeyup={ edit }>
-      <button disabled={ !text }>Add</button>
-      <button disabled={ canRemove() } class="remove" onclick={ remove } title="Remove empty lists">x</button>
-    </form>
-    <todo each={ todos }></todo>
-    
-    <script>
-      this.todos = [];
-      var self = this;
-      this.on('mount', function() {
-        if(opts.todos) this.todos = opts.todos;
-        setTimeout(function(){self.update()},0); // why do I have to hack?
-      });
-  
-      this.edit = function(e) {
-        this.text = e.target.value;
-      }
-  
-      this.add = function(e) {
-        if (this.text) {
-          this.todos.push({title: this.text, items: []});
-          this.text = this.input.value = '';
-        }
-      }
-  
-      this.remove = function(e) {
-        for (var i = this.todos.length -1; i>=0; i--) {
-          if (this.todos[i].items.length === 0) {
-            this.todos.splice(i, 1);
-          }
-        }
-      }
-  
-      this.canRemove = function() {
-        for(var i in this.todos) {
-          if (this.todos[i].items.length === 0) return false;
-        }
-      return true;
-      }
+  <h3>Add List/Remove Empty</h3>
+  <form onsubmit={ add }>
+    <input name="input" onkeyup={ edit }>
+    <button disabled={ !text }>Add</button>
+    <button disabled={ canRemove() } class="remove" onclick={ remove } title="Remove empty lists">x</button>
+  </form>
+  <todo each={ todos }></todo>
 
-    </script>
+  <script>
+    this.todos = opts.todos || []
+    var self = this;
+
+    edit(e) {
+      this.text = e.target.value
+    }
+
+    add(e) {
+      if (this.text) {
+        this.todos.push({title: this.text, items: []});
+        this.text = this.input.value = ''
+      }
+    }
+
+    remove(e) {
+      for (var i = this.todos.length -1; i>=0; i--) {
+        if (this.todos[i].items.length === 0) {
+          this.todos.splice(i, 1)
+        }
+      }
+    }
+
+    this.canRemove = function() {
+      var empties = this.todos.filter(function(t) {
+        return t.items.length==0
+      })
+      return empties.length == 0
+    }.bind(this)
+
+  </script>
 </todos>
