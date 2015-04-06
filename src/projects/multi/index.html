@@ -1,38 +1,38 @@
-<!DOCTYPE html>
-<html>
+  <!DOCTYPE html>
+  <html>
 
-<head>
-  <link rel="stylesheet" href="style.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/riot/2.0.2/riot.min.js"></script>
-</head>
+  <head>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/riot/2.0.2/riot.min.js"></script>
+  </head>
 
-<body>
-  <h3>Select Color</h3>
-  <multi-select id="colors"></multi-select>
+  <body>
+    <h3>Select Color</h3>
+    <multi-select id="colors"></multi-select>
 
-  <h3>Select Hobby</h3>
-  <multi-select id="hobbies"></multi-select>
+    <h3>Select Hobby</h3>
+    <multi-select id="hobbies"></multi-select>
 
-  <!-- template -->
-  <textarea id="selectTag">
-    <ul class="selected">
-      <li each="{ selected }">
-        <div>{ name }<a href="#" onclick="{ parent.remove }">x</a>
-        </div>
+    <!-- template -->
+    <textarea id="selectTag">
+      <ul class="selected">
+        <li each="{ selected }">
+          <div>{ name }<a href="#" onclick="{ parent.remove }">x</a>
+          </div>
 
-      </li>
-      <li class="selector" onclick="{ show }">&nbsp;</li>
-    </ul>
+        </li>
+        <li class="selector" onclick="{ show }">&nbsp;</li>
+      </ul>
 
-    <ul class="selections" show="{ showing }">
-      <li each="{ selections }">
-        <div onclick="{ parent.select }">{ name }</div>
-      </li>
-    </ul>
-  </textarea>
-  
-  <script src="tag.js"></script>
-  <script src="script.js"></script>
-</body>
+      <ul class="selections" show="{ showing }">
+        <li each="{ selections }">
+          <div onclick="{ parent.select }">{ name }</div>
+        </li>
+      </ul>
+    </textarea>
 
-</html>
+    <script src="tag.js"></script>
+    <script src="script.js"></script>
+  </body>
+
+  </html>

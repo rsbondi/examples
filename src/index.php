@@ -27,19 +27,15 @@ foreach($dirs as $dir) {
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/marked/0.3.2/marked.min.js"></script>
     <script src="tag.html" type="riot/tag"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/riot/2.0.8/riot+compiler.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/github.min.css">
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/riot/2.0.11/riot+compiler.min.js"></script>
+    <script src="http://ace.c9.io/build/src/ace.js" type="text/javascript" charset="utf-8"></script>
 
     <script>
         var apps = <?= json_encode($json); ?>;
         var readme = <?= json_encode($readme); ?>;
         riot.compile(function() {
-            var ex = riot.mount( 'examples',  {examples: apps, readme: readme})
-            var aCodes = document.getElementsByTagName('pre');
-            for (var i=0; i < aCodes.length; i++) {
-                hljs.highlightBlock(aCodes[i]);
-            }
+            var ex = riot.mount( 'examples',  {examples: apps, readme: readme})[0]
+            ex.trigger('complete')
         })
 
     </script>

@@ -40,8 +40,8 @@ iframe {
     border:1px solid lightgrey;
 }
 .tabs-content {
-    width: 37.5em;
-    height: 25em;
+    width: 50em;
+    height: 33.5em;
     overflow: auto;
     float: left;
     border: 1px solid lightgrey;

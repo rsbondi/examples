@@ -18,25 +18,70 @@
         <li each={f, i in file} class="{active:parent.active==i}"  onclick={parent.settab} hide={f.name=='README.md'}>
             {f.name}
         </li>
-    </ul>
-    <ul class="tabs-content">
-        <li each={f, i in file} class="{active:parent.active==i}">
-            <pre>
-           {f.contents}
-            </pre>
+        <li show="{ hasIndex }">
+            <button onclick="{loadchanges}" disabled={ !dirty }>Update</button>
         </li>
     </ul>
+    <div class="tabs-content" id="editor_{id}">
+    </div>
 
-    <iframe src="{dir}/" frameborder="0" />
+    <iframe src="{dir}" frameborder="0" />
 
     <script>
-        this.dir = opts.dir
+        this.dir = opts.dir + '/'
+        this.id = opts.dir.slice(9)
         this.file = opts.file
         this.active = this.file[0].name == 'README.md' ? 1 : 0
+        this.editor = {}
+        this.dirty = false
+        this.hasIndex = false;
         var self = this
+
+        this.sessions = []
+        this.parent.parent.one('complete', function() {
+            self.editor = ace.edit("editor_"+self.id);
+            self.editor.setTheme("ace/theme/eclipse");
+            for(var f=0; f<self.file.length; f++) {
+                if(self.file[f].name == 'README.md') continue
+                if(self.file[f].name == 'index.html') {
+                    self.hasIndex = true
+                    self.update()
+                }
+                var session = new ace.createEditSession(self.file[f].contents, {
+                    "path": "ace/mode/xml"
+                });
+                self.sessions[self.file[f].name] = session
+            }
+            self.editor.renderer.setShowGutter(false);
+            self.editor.setSession(self.sessions[self.file[self.active].name])
+            self.editor.on('change', function() {self.dirty = true; self.update()})
+        })
+
+        loadchanges() {
+            var index
+            Object.keys(self.sessions).some(function(s) { // get index for replacements
+                if(s == 'index.html') {
+                    index = self.sessions[s].getValue()
+                    return true
+                }
+            })
+            Object.keys(self.sessions).some(function(s) {
+                var ext = s.slice(s.lastIndexOf('.')+1)
+                var typ = ext == 'js' ? 'javascript' : ext
+                if(s == 'index.html') return false;
+                re = new RegExp('(src|href)=(\'|")'+s+'(\'|")')
+                index = index.replace(re, "$1=data:type=text/"+typ+','+encodeURIComponent(self.sessions[s].getValue()))
+            })
+
+            index = index.replace(/<!DOCTYPE.+\n/, '')
+            self.dir = 'data:text/html;charset=utf-8,'+encodeURIComponent(index)
+            self.dirty = false
+        }
+
 
         settab(e) {
             self.active = e.item.i
+            self.editor.setSession(self.sessions[e.item.f.name])
         }
 
     </script>
