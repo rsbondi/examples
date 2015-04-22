@@ -21,7 +21,7 @@
     </ul>
     <ul class="tabs-content">
         <li each={f, i in file} class="{active:parent.active==i}" onclick="{ parent.selectAll }">
-            <pre onclick="{ parent.selectAll }">
+            <pre>
            {f.contents}
             </pre>
         </li>
