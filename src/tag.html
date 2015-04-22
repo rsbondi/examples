@@ -20,8 +20,8 @@
         </li>
     </ul>
     <ul class="tabs-content">
-        <li each={f, i in file} class="{active:parent.active==i}">
-            <pre>
+        <li each={f, i in file} class="{active:parent.active==i}" onclick="{ parent.selectAll }">
+            <pre onclick="{ parent.selectAll }">
            {f.contents}
             </pre>
         </li>
@@ -37,6 +37,14 @@
 
         settab(e) {
             self.active = e.item.i
+        }
+
+        selectAll(e) {
+            var r = document.createRange();
+            r.selectNodeContents(e.target);
+            var sel=window.getSelection();
+            sel.removeAllRanges();
+            sel.addRange(r);
         }
 
     </script>
