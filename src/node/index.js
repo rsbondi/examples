@@ -5,6 +5,11 @@ var http = require("http"),
     port = process.argv[2] || 8888;
 
 http.createServer(function(req, res) {
+    if (path.normalize(decodeURI(req.url)) !== decodeURI(req.url)) {
+        res.statusCode = 403;
+        res.end();
+        return;
+    }
 
     var projects = '../projects/'
 
